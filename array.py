@@ -31,3 +31,9 @@ def maxProfit(self, prices: List[int]) -> int:
 
     return max_profit
 
+#217. Contains Duplicates
+def containsDuplicate(self, nums: List[int]) -> bool:
+    return len(nums) > len(set(nums)) #Set can only have unique elements
+    # We can also use a hashmap by adding each number and if it comes again we just return True
+
+
