@@ -36,4 +36,17 @@ def containsDuplicate(self, nums: List[int]) -> bool:
     return len(nums) > len(set(nums)) #Set can only have unique elements
     # We can also use a hashmap by adding each number and if it comes again we just return True
 
+#238. Product of Array except self
+def productExceptSelf(self, nums: List[int]) -> List[int]: #We use a postfix and prefix method
+    prefix = 1
+    res=[] # We are calculating the prefix and postfix in the same array
+    for i in range(len(nums)): # We go over the array and save the product of array before it eg[10, 5] the prefix of 5 is 10
+        res.append(prefix)
+        prefix *= nums[i]
+    postfix = 1
+    for i in range(len(nums)-1, -1, -1): # We now go over from the back and do the same thing as prefix but from behind ie postfix
+        res[i] *= postfix
+        postfix *= nums[i]
+    return res
+
 
