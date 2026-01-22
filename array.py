@@ -49,4 +49,15 @@ def productExceptSelf(self, nums: List[int]) -> List[int]: #We use a postfix and
         postfix *= nums[i]
     return res
 
+#53. Maximum Subarray
+def maxSubArray(self, nums: List[int]) -> int:
+    maxSum = nums[0] # We start the max sum with the first number in the array
+    curSum = 0
+    for n in nums:
+        if curSum < 0: #We checking if cursum is less than 0 because if will just make the over all sum less eg. cursum = -3 and n is 4, 4 -3 = 1 
+            curSum = 0 # We reset cursum see the above like making cursum 0 and then adding will be more so it will be 4 which is greater than 1 if we don't do this step
+        curSum += n # Just adding
+        maxSum = max(maxSum , curSum) 
+    return maxSum
+
 
