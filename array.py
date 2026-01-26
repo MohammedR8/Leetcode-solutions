@@ -60,4 +60,18 @@ def maxSubArray(self, nums: List[int]) -> int:
         maxSum = max(maxSum , curSum) 
     return maxSum
 
+#152. Maximum Product Subarray
+def maxProduct(self, nums: List[int]) -> int:
+    res = max(nums)
+    curMin, curMax = 1, 1 #We have current min and max because in multiplication -ve times -ve is +ve so we can have like -100 and after that -1 we have 100 now.
+    for n in nums:
+        if n == 0: # We reset the current min and max because 0 * anything is 0
+            curMin, curMax = 1 , 1
+            continue
+        temp = curMax * n # We use temp becuase we are updating curMax so we save and use the old curMax and not the new one
+        curMax = max(curMax * n , curMin * n , n) # Calculating the max 
+        curMin = min(curMin* n, temp , n) # Calculating the min
+        res = max(res, curMax) #Calculating the overall max 
+    return res
+
 
