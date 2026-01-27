@@ -74,4 +74,16 @@ def maxProduct(self, nums: List[int]) -> int:
         res = max(res, curMax) #Calculating the overall max 
     return res
 
+#153. Find Minimum in Rotated Sorted Array
+def findMin(self, nums: List[int]) -> int:
+    l = 0
+    r = len(nums) - 1 #We are solving this using two pointer one at the start and one at the end
+    while l < r:
+        m = (l + r)//2 #Caluculating the middle
+        if nums[m] > nums[r]: #The array is sorted but rotated when we see middle is more than right then that means the pivot/lowest is on the right side
+            l = m + 1
+        else: #If not it is on the left side
+            r = m
+    return nums[l] 
+
 
