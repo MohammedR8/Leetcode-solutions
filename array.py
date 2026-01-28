@@ -84,6 +84,24 @@ def findMin(self, nums: List[int]) -> int:
             l = m + 1
         else: #If not it is on the left side
             r = m
-    return nums[l] 
+    return nums[l]
+
+#33. Search in a rotated sorted array
+def search(self, nums: List[int], target: int) -> int:
+    l  , r = 0 , len(nums) - 1 #Similar to finding minimum in rotated sorted array
+    while l <= r:
+        mid = (l + r) // 2
+        if target == nums[mid]:
+            return mid
+        if nums[l] <= nums[mid]:
+            if target > nums[mid] or target < nums[l]:
+                l = mid + 1
+            else:
+                r = mid - 1
+        else:
+            if target < nums[mid] or target > nums[r]:
+                r = mid - 1
+            else:
+                l = mid + 1
 
 
