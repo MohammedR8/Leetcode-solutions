@@ -90,16 +90,16 @@ def findMin(self, nums: List[int]) -> int:
 def search(self, nums: List[int], target: int) -> int:
     l  , r = 0 , len(nums) - 1 #Similar to finding minimum in rotated sorted array
     while l <= r:
-        mid = (l + r) // 2
+        mid = (l + r) // 2 #Calulating mid
         if target == nums[mid]:
             return mid
-        if nums[l] <= nums[mid]:
-            if target > nums[mid] or target < nums[l]:
-                l = mid + 1
+        if nums[l] <= nums[mid]: #Checking if left pointer to mid is sorted because it might not be the case because of pivot
+            if target > nums[mid] or target < nums[l]: #Checking if less then l or more than mid because we know that l to mid is sorted if not in this part then in the right part
+                l = mid + 1 # We shift the l to mid + 1
             else:
                 r = mid - 1
-        else:
-            if target < nums[mid] or target > nums[r]:
+        else: # this is the case where l to mid is not sorted meaning mid to r are sorted and the pivot is on the left side
+            if target < nums[mid] or target > nums[r]: # if less then mid or more than r we move to the left side
                 r = mid - 1
             else:
                 l = mid + 1
